@@ -1,0 +1,16 @@
+DATA: /Users/nickbakewell/Desktop/SummerProject/Data/Blimp_Feb9.csv;
+VARIABLES: CCG ORG_CODE NumItems TotalPats yrc yrc2 CPercFemale CPerc65plus CPercOB CPercHyp IMD Urban GPHeadcountCentered CPercDia NHSRegion; 
+ORDINAL: Urban; #Blimp guide says put binary variables here.
+NOMINAL: NHSRegion; 
+FIXED: NumItems TotalPats yrc yrc2 CPercFemale CPerc65plus Urban NHSRegion;
+MISSING: 123456789; #this is the missing value code. 
+CLUSTERID: ORG_CODE CCG;
+FIXED: NumItems yrc yrc2 CPercFemale CPerc65plus;
+FCS: NumItems  yrc yrc2 CPercFemale CPerc65plus CPercOB CPercHyp IMD Urban GPHeadcountCentered CPercDia NHSRegion; 
+SEED: 1234;
+BURN: 25000;
+ITERATIONS: 25000;
+CHAINS: 4;
+NIMPS: 30; #Setting a relatively large number of imputations
+OPTIONS: psr;
+SAVE: stacked=imputations_Feb9.csv;
